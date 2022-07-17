@@ -1,8 +1,8 @@
 // Browser Automation
 
-// dependencies fro this project are :
+// Dependencies for this project are :
     // -selenium 
-    // -JSON In Java » 20220320
+    // -JSON In Java » version 20220320 
     // -Chrome DRIVER version Versión 103.0.5060.114   
 
 import java.sql.Driver;
@@ -21,13 +21,13 @@ public class App {
         // set property is used to get access for using jar files in it's memory location
         System.setProperty("webdriver.chrome.driver", "./src/drivers/chromedriver");
         
-        // creating object chromedriver for our current version 
+        // creating object chromedriver for our current version of the browser
         WebDriver driver = new ChromeDriver();
 
-        // we open the browser at the following url
+        // we open the browser at the following url first
         driver.get("https://jsonplaceholder.typicode.com/users/1");
 
-        // we get our Json data in plain-text from html element <pre></pre>
+        // we get our Json data in plain-text from html element <pre></pre> in the current url
         String text = driver.findElement(By.cssSelector("pre")).getText();
 
         // converting the json string value to JSON object using our JSON library
@@ -44,19 +44,22 @@ public class App {
         String email = jsonObject.getString("email");
         String message = "Test message from the java and selenium";
 
-        // navigate to another web page and click on contact button
+        // navigate to another url and click on contact button on the web psge
 
         driver.navigate().to("https://www.veroxos.com");
-        driver.findElement(By.xpath("//*[@id=\"menu-1-a5ee844\"]/li[4]/a")).click();
+       // we pause for 2 seconds in case the element takes extra time to load on the web page
         Thread.sleep(2000);
-        // filling up the form 
+        driver.findElement(By.xpath("//*[@id=\"menu-1-a5ee844\"]/li[4]/a")).click();
+        
+        
+        // filling up the form whith our saved data from previous url
 
         driver.findElement(By.name("form_fields[name]")).sendKeys(name);
         Thread.sleep(1000);
         driver.findElement(By.name("form_fields[email]")).sendKeys(email);
         Thread.sleep(1000);
 
-        //  first position from splited array contains the numbers
+        //  first position from splited array contains the phone number
         driver.findElement(By.name("form_fields[field_6178a92]")).sendKeys(splited[0]);
         Thread.sleep(1000);
 
@@ -70,8 +73,9 @@ public class App {
         //  submit the form
     
         driver.findElement(By.xpath("/html/body/main/div/div[1]/div/div/section[2]/div[2]/div/div[2]/div/div/div[2]/div/form/div/div[7]/button")).submit();
-    
         Thread.sleep(1000); 
+        
+        // we close our driver         
         driver.quit();
     }
 }
