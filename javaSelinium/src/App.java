@@ -72,6 +72,6 @@ public class App {
         driver.findElement(By.xpath("/html/body/main/div/div[1]/div/div/section[2]/div[2]/div/div[2]/div/div/div[2]/div/form/div/div[7]/button")).submit();
     
         Thread.sleep(1000); 
-        // driver.quit();
+        driver.quit();
     }
 }
